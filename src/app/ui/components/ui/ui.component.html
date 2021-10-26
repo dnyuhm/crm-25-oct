@@ -1,12 +1,17 @@
 <header class="fixed-top">
   <span (click)="toggle()">
-    <ng-content *ngIf="close; else elseBlock" select=".tr-open"></ng-content>
-
-    <ng-template #elseBlock>
-      <ng-content select=".tr-close"></ng-content>
-    </ng-template>
-
+    <ng-container *ngIf="close; then thenBlock else elseBlock"></ng-container>
   </span>
+
+  <!-- ngif templates -->
+  <ng-template #thenBlock>
+    <ng-content select=".tr-open"></ng-content>
+  </ng-template>
+
+  <ng-template #elseBlock>
+    <ng-content select=".tr-close"></ng-content>
+  </ng-template>
+
   <ng-content select=".tr-header"></ng-content>
 </header>
 <main [ngClass]="{'close-aside': close}">
