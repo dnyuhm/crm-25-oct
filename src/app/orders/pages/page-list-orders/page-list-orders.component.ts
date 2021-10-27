@@ -8,11 +8,23 @@ import { OrdersService } from '../../services/orders.service';
   styleUrls: ['./page-list-orders.component.scss'],
 })
 export class PageListOrdersComponent implements OnInit {
-  public collection!: Order[];
   public myTitle: string = 'list orders';
+  public collection!: Order[];
+  public headers: string[];
 
   constructor(private ordersService: OrdersService) {
-    this.ordersService.collection$.subscribe((data) => console.log(data));
+    this.headers = [
+      'Type',
+      'Client',
+      'NbJours',
+      'TjmHT',
+      'Total HT',
+      'Total TTC',
+      'State',
+    ];
+    this.ordersService.collection$.subscribe(
+      (data) => (this.collection = data)
+    );
   }
 
   ngOnInit(): void {}
