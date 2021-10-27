@@ -9,10 +9,15 @@ import { OrdersService } from '../../services/orders.service';
 })
 export class PageListOrdersComponent implements OnInit {
   public collection!: Order[];
+  public myTitle: string = 'list orders';
 
   constructor(private ordersService: OrdersService) {
     this.ordersService.collection$.subscribe((data) => console.log(data));
   }
 
   ngOnInit(): void {}
+
+  public changeTitle(): void {
+    this.myTitle = "My Order's list";
+  }
 }
