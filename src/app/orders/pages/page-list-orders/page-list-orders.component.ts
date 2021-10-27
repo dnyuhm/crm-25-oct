@@ -9,8 +9,10 @@ import { OrdersService } from '../../services/orders.service';
 })
 export class PageListOrdersComponent implements OnInit {
   public collection!: Order[];
+
   constructor(private ordersService: OrdersService) {
     this.ordersService.collection$.subscribe((data) => console.log(data));
+    
   }
 
   ngOnInit(): void {}
