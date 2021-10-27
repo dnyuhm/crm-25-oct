@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Component({
@@ -6,13 +6,14 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   public title: string = 'crm';
   private obs = new Observable((listX) => {
     listX.next(Math.random());
   });
   private subj = new Subject();
   private behav = new BehaviorSubject(3);
+  // private sub: Subscription; unsubscribe exemple
   constructor() {
     // this.obs.subscribe((data) => console.log(data));
     // this.obs.subscribe((data) => console.log(data));
@@ -25,6 +26,10 @@ export class AppComponent {
     // this.behav.subscribe((data) => console.log(data));
     // this.behav.next(2);
     // this.behav.next(Math.random());
-    // this.behav.subscribe((data) => console.log(data));
+    // this.sub = this.behav.subscribe((data) => console.log(data));  unsubscribe exemple
+  }
+
+  ngOnDestroy(): void {
+    // this.sub.unsubscribe(); unsubscribe exemple
   }
 }
